@@ -29,7 +29,7 @@ const animalSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Description is required']
   },
-  // • donations – an array of objects containing the user's ID
+ 
    owner: {
     type: mongoose.Types.ObjectId,
     ref: 'User',
@@ -41,4 +41,4 @@ const Animal = mongoose.model('Animal', animalSchema);
 module.exports = Animal;
 
 
-// 3chasa i 27 min
+// 3chasa i 00 min
