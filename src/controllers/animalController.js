@@ -8,7 +8,11 @@ router.get('/create', (req, res) =>{
 });
 
 router.post('/create', async (req, res)=>{
-const animalData = req.body;
+const animalData = {
+    ...req.body,
+    owner: req.user._id
+
+}
 try{
     await animalManager.create(animalData)
 
