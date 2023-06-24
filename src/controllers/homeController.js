@@ -1,12 +1,15 @@
 const router = require('express').Router();
+const animalManager = require('../managers/animalManager')
 
 router.get('/', (req, res)=>{
 //console.log(req.user);
     res.render('home');
 });
 
-router.get('/dashboard', (req, res)=>{
-    res.render('dashboard');
+router.get('/dashboard', async (req, res)=>{
+const animals = await animalManager.getAll().lean();
+
+    res.render('dashboard', { animals });
 });
 
 router.get('/search', (req, res)=>{
