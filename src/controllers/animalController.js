@@ -23,4 +23,11 @@ res.render('animals/create', {error: getErrorMessage(err)})
 }
 });
 
+router.get('/:animalId/details', async(req, res)=>{
+    const animalId = req.params.animalId
+    const animal = await animalManager.getOne(animalId).lean();
+
+    res.render('animals/details', {animal})
+})
+
 module.exports = router;
