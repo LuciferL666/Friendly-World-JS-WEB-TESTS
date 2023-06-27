@@ -26,9 +26,9 @@ res.render('animals/create', {error: getErrorMessage(err)})
 router.get('/:animalId/details', async(req, res)=>{
     const animalId = req.params.animalId
     const animal = await animalManager.getOne(animalId).lean();
-    const isOwner =  req.email == animal.owner._id;
+    const isOwner =  req.user._id == animal.owner._id;
 
-    res.render('animals/details', {animal, isOwner })
+    res.render('animals/details', { animal, isOwner })
 })
 
 module.exports = router;
