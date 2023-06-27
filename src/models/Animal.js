@@ -39,6 +39,3 @@ const animalSchema = new mongoose.Schema({
 const Animal = mongoose.model('Animal', animalSchema);
 
 module.exports = Animal;
-
-
-// 3chasa i 00 min
