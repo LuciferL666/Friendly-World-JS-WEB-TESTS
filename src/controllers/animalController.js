@@ -43,5 +43,23 @@ res.render(`/animals/${animalId}/details`, {error: 'Unsuccessful animal deletion
     }
 });
 
+router.get('/:animalId/edit', async(req, res)=>{
+    const animal = await animalManager.getOne(req.params.animalId).lean()
+    res.render('animals/edit', { animal })
+});
+
+router.post('/:animalId/edit', async(req, res)=>{
+const animalId = req.params.animalId
+    const animalData = req.body;
+    try {
+
+        await animalManager.edit(animalId, animalData);
+
+        res.redirect(`/animals/${animalId}/details`)
+    }catch (err){
+        res.render('animals/edit', {error: 'Unable to update animal', ...animalData});
+    }
+})
+
 
 module.exports = router;
