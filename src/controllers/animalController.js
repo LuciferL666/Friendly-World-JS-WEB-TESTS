@@ -29,7 +29,19 @@ router.get('/:animalId/details', async(req, res)=>{
     const isOwner =  req.user?._id == animal.owner?._id;
 
     res.render('animals/details', { animal, isOwner })
-})
+});
+
+router.get('/:animalId/delete', async (req, res)=>{
+    const animalId = req.params.animalId;
+    try {
+
+        await animalManager.delete(animalId);
+    
+        res.redirect('/dashboard')
+    } catch (err){
+res.render(`/animals/${animalId}/details`, {error: 'Unsuccessful animal deletion'})
+    }
+});
 
 
 module.exports = router;
